@@ -17,7 +17,7 @@ size_t	ft_strlen(const char *str)
 	size_t	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (str[i])
 		i++;
 	return (i);
 }
@@ -47,13 +47,13 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!joined_str)
 		return (NULL);
 	i = 0;
-	while (s1[i] != '\0')
+	while (s1[i])
 	{
 		joined_str[i] = s1[i];
 		i++;
 	}
 	j = 0;
-	while (s2[j] != '\0')
+	while (s2[j])
 	{
 		joined_str[i + j] = s2[j];
 		j++;
@@ -72,7 +72,7 @@ char	*ft_strdup(const char *s1)
 	if (!dup)
 		return (NULL);
 	i = 0;
-	while (s1[i] != '\0')
+	while (s1[i])
 	{
 		dup[i] = s1[i];
 		i++;
