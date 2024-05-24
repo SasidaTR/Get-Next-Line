@@ -69,6 +69,8 @@ static char	*read_and_save(int fd, char **saved)
 	buff = malloc(BUFFER_SIZE + 1);
 	if (!buff)
 		return (NULL);
+	if (!*saved)
+		*saved = ft_strdup("");
 	bytes_read = 1;
 	while (!ft_strchr(*saved, '\n') && bytes_read != 0)
 	{
