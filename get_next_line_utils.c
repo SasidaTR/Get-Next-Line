@@ -11,10 +11,7 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdlib.h>
-#include <string.h>
 
-// Fonction pour calculer la longueur d'une chaîne de caractères
 size_t	ft_strlen(const char *str)
 {
 	size_t	i;
@@ -25,7 +22,6 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-// Fonction pour trouver la première occurrence d'un caractère dans une chaîne
 char	*ft_strchr(const char *s, int c)
 {
 	while (*s)
@@ -39,8 +35,7 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-// Fonction pour concaténer deux chaînes de caractères
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*joined_str;
 	size_t	i;
@@ -64,10 +59,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		j++;
 	}
 	joined_str[i + j] = '\0';
+	free(s1);
 	return (joined_str);
 }
 
-// Fonction pour dupliquer une chaîne de caractères
 char	*ft_strdup(const char *s1)
 {
 	char	*dup;
