@@ -26,7 +26,7 @@ static char	*save_remaining(char *str)
 		free(str);
 		return (NULL);
 	}
-	remaining = malloc(ft_strlen(str) - i + 1);
+	remaining = malloc(ft_strlen(str) - i);
 	if (!remaining)
 		return (NULL);
 	i++;
@@ -48,11 +48,16 @@ static char	*get_line(char *str)
 		return (NULL);
 	while (str[i] && str[i] != '\n')
 		i++;
-	line = malloc(i + 1);
+	line = malloc(i + 2);
 	if (!line)
 		return (NULL);
 	i = 0;
 	while (str[i] && str[i] != '\n')
+	{
+		line[i] = str[i];
+		i++;
+	}
+	if (str[i] == '\n')
 	{
 		line[i] = str[i];
 		i++;
