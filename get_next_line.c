@@ -26,7 +26,7 @@ static char	*save_remaining(char *str)
 		free(str);
 		return (NULL);
 	}
-	remaining = malloc(ft_strlen(str) - i);
+	remaining = malloc(ft_strlen(str) - i + 1);
 	if (!remaining)
 		return (NULL);
 	i++;
