@@ -16,7 +16,6 @@ static char	*save_remaining(char *str)
 {
 	char	*remaining;
 	size_t	i;
-	size_t	j;
 
 	i = 0;
 	while (str[i] && str[i] != '\n')
@@ -29,11 +28,7 @@ static char	*save_remaining(char *str)
 	remaining = malloc(ft_strlen(str) - i + 1);
 	if (!remaining)
 		return (NULL);
-	i++;
-	j = 0;
-	while (str[i])
-		remaining[j++] = str[i++];
-	remaining[j] = '\0';
+	ft_strcpy(remaining, str + i + 1);
 	free(str);
 	return (remaining);
 }
@@ -76,6 +71,8 @@ static char	*read_and_save(int fd, char **saved)
 		return (NULL);
 	if (!*saved)
 		*saved = ft_strdup("");
+	if (!*saved)
+		return (free(buff), NULL);
 	bytes_read = 1;
 	while (!ft_strchr(*saved, '\n') && bytes_read != 0)
 	{
@@ -104,4 +101,32 @@ char	*get_next_line(int fd)
 	line = get_line(saved);
 	saved = save_remaining(saved);
 	return (line);
+}
+
+#include <fcntl.h>
+#include <stdio.h>
+
+int	main(int argc, char **argv)
+{
+	int		fd;
+	char	*line;
+
+	if (argc != 2)
+	{
+		printf("Usage: %s <file>\n", argv[0]);
+		return (1);
+	}
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+	{
+		perror("Error opening file");
+		return (1);
+	}
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		printf("%s", line);
+		free(line);
+	}
+	close(fd);
+	return (0);
 }
